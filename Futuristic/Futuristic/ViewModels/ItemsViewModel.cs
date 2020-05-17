@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using Futuristic.Models;
 using Futuristic.Views;
+using Futuristic.Services;
 
 namespace Futuristic.ViewModels
 {
@@ -14,18 +15,18 @@ namespace Futuristic.ViewModels
     {
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-
+        private MockDataStore ds;
         public ItemsViewModel()
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
+            ds = new MockDataStore();
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
                 var newItem = item as Item;
                 Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+                await ds.AddItemAsync(newItem);
             });
         }
 
@@ -39,7 +40,7 @@ namespace Futuristic.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await ds.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);
