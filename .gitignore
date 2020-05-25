@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Futuristic/Futuristic/.vscode/launch.json
+/FuturisticSP.code-workspace

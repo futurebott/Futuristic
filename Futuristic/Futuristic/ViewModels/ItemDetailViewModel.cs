@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Futuristic.Models;
+using Xamarin.Forms;
 
 namespace Futuristic.ViewModels
 {
@@ -12,5 +14,6 @@ namespace Futuristic.ViewModels
             Title = item?.Text;
             Item = item;
         }
+
     }
 }

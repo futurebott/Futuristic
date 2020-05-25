@@ -5,37 +5,47 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Futuristic.Views.StoreList">
-    <StackLayout Margin="20">
+    <StackLayout>
         <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
 
             <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding stores}"
                         SelectionMode="Single"
-                          >
+                        BackgroundColor="#429de3">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2" 
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFill"
-                               HeightRequest="60" 
-                               WidthRequest="60" />
-                            <Label Grid.Column="1" 
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold" />
-                            <Label Grid.Row="1"
-                               Grid.Column="1" 
-                               Text="{Binding DistanceString}"
-                               FontAttributes="Italic" 
-                               VerticalOptions="End" />
+                            <Image Source="{Binding ImageUrl}"
+                               WidthRequest="90" HeightRequest="90"
+                               Grid.Column="0" />
+                            <StackLayout Orientation="Vertical" Grid.Column="1">
+
+                                <Grid>
+                                    <Image Source="dis.png"  WidthRequest="5" HeightRequest="5" 
+                                Grid.Row="1"  Grid.Column="0" />
+                                    <Label Text="{Binding Distance, StringFormat='{0} km'}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16"
+                                Grid.Row="1"  Grid.Column="1" />
+
+
+                                    <Image Source="np.png"  WidthRequest="5" HeightRequest="5" 
+                                Grid.Row="2"  Grid.Column="0" />
+                                    <Label Text="{Binding OutSideLine, StringFormat='{0}' }"
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}"
+                                Grid.Row="2"  Grid.Column="1"
+                                FontSize="16" />
+                                </Grid>
+
+                            </StackLayout>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -17,6 +17,7 @@ namespace Futuristic.Models
         public int LocationRefreshIntervalinMinutes { get; set; }
         public User()
         {
+            ApplicationId = new Guid("44d0c89a-6c3c-4f20-ac05-e0b1af1cce4a");
             CurrentLat = 0;
             CurrentLong = 0;
             TimeStamp = DateTime.Now;
