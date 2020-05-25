@@ -80,7 +80,7 @@ namespace Futuristic.Services
             if (meters > 1000)
                 distance = Math.Round(meters / 1000).ToString() + " km";
             else
-                distance = Math.Round(meters).ToString() + "m";
+                distance = Math.Round(meters).ToString() + " m";
             return distance;
         }
     }

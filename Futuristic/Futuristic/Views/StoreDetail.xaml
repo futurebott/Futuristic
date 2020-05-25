@@ -54,7 +54,7 @@
             HorizontalOptions="Center"
             Margin="-100,0,0,0"/>
 
-                <Button Text="25+" Clicked="OnButtonClicked"  FontSize="Medium" Grid.Row="7" Grid.Column="0" 
+                <Button Text="25+"  Command="{Binding BtnCmdLine}" CommandParameter="out-25"  FontSize="Medium" Grid.Row="7" Grid.Column="0" 
             TextColor="Black"
             BackgroundColor="#90EE90"
             BorderColor="Green"
@@ -65,7 +65,7 @@
             HorizontalOptions="Center"
             Margin="+100,0,0,0"/>
 
-                <Button Text="50+" Clicked="OnButtonClicked" FontSize="Medium" Grid.Row="7" Grid.Column="1"
+                <Button Text="50+"  Command="{Binding BtnCmdLine}" CommandParameter="out-50"  FontSize="Medium" Grid.Row="7" Grid.Column="1"
             TextColor="Black"
             BackgroundColor="#FFFF99"
             BorderColor="Orange"
@@ -76,7 +76,7 @@
             HorizontalOptions="Center"
             Margin="-100,0,0,0"/>
 
-                <Button Text="100+" Clicked="OnButtonClicked" FontSize="Medium" Grid.Row="7" Grid.Column="1"
+                <Button Text="100+" Command="{Binding BtnCmdLine}" CommandParameter="out-50" FontSize="Medium" Grid.Row="7" Grid.Column="1"
             TextColor="Black"
             BackgroundColor="#ffcccb"
             BorderColor="Red"
@@ -92,7 +92,7 @@
                 <Image Source="co.png"  WidthRequest="20" HeightRequest="20" Grid.Row="9"  Grid.Column="0" Margin="0,-25,+150,0" HorizontalOptions="Start"/>
                 <Label Text="CheckOut Line :" FontSize="Medium" Grid.Row="9" Grid.Column="0" Margin="+40,0,0,0"/>
                 <Label Text="{Binding SingleStore.CheckOutLine}" d:Text="Item description" FontSize="Small" Grid.Row="9" Grid.Column="1"/>
-                <Button Text=">25" Clicked="OnButtonClicked" FontSize="Medium" Grid.Row="10" Grid.Column="0" 
+                <Button Text=">25"  Command="{Binding BtnCmdLine}" CommandParameter="in-10" FontSize="Medium" Grid.Row="10" Grid.Column="0" 
             TextColor="Black"
             BackgroundColor="#89cff0"
             BorderColor="Blue"
@@ -103,7 +103,7 @@
             HorizontalOptions="Center"
             Margin="-100,0,0,0"/>
 
-                <Button Text="25+" Clicked="OnButtonClicked"  FontSize="Medium" Grid.Row="10" Grid.Column="0" 
+                <Button Text="25+" Command="{Binding BtnCmdLine}" CommandParameter="in-25"  FontSize="Medium" Grid.Row="10" Grid.Column="0" 
             TextColor="Black"
             BackgroundColor="#90EE90"
             BorderColor="Green"
@@ -114,7 +114,7 @@
             HorizontalOptions="Center"
             Margin="+100,0,0,0"/>
 
-                <Button Text="50+" Clicked="OnButtonClicked" FontSize="Medium" Grid.Row="10" Grid.Column="1"
+                <Button Text="50+" Command="{Binding BtnCmdLine}" CommandParameter="in-50" FontSize="Medium" Grid.Row="10" Grid.Column="1"
             TextColor="Black"
             BackgroundColor="#FFFF99"
             BorderColor="Orange"
@@ -125,7 +125,7 @@
             HorizontalOptions="Center"
             Margin="-100,0,0,0"/>
 
-                <Button Text="100+" Clicked="OnButtonClicked" FontSize="Medium" Grid.Row="10" Grid.Column="1"
+                <Button Text="100+"  Command="{Binding BtnCmdLine}" CommandParameter="in-100" FontSize="Medium" Grid.Row="10" Grid.Column="1"
             TextColor="Black"
             BackgroundColor="#ffcccb"
             BorderColor="Red"

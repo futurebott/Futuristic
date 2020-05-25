@@ -27,7 +27,7 @@
                                 <Grid>
                                     <Image Source="dis.png"  WidthRequest="5" HeightRequest="5" 
                                 Grid.Row="1"  Grid.Column="0" />
-                                    <Label Text="{Binding Distance, StringFormat='{0} km'}" 
+                                    <Label Text="{Binding DistanceString, StringFormat='{0}'}" 
                                 d:Text="{Binding .}"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 

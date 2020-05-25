@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace Futuristic.ViewModels
 {
@@ -35,12 +36,13 @@ namespace Futuristic.ViewModels
                 var userLocation = await user.CurrentLocation();
                 var parameters = "latitude=" + userLocation.Latitude + "&longtitude=" + userLocation.Longitude + "&live=true";
                 var asnycList = await _storeService.GetList(parameters);
-                foreach (var item in asnycList)
+                foreach (var item in asnycList.OrderBy(a=> a.Distance))
                 {
                     if (item.Distance > 0)
                         item.DistanceString = LocationMonanager.MetersToString(item.Distance);
                     stores.Add(item);
                 }
+                
             }
             catch (Exception ex)
             {
