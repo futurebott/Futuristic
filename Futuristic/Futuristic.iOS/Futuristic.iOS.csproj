@@ -141,4 +141,34 @@
       <Name>Futuristic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\app.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\co.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\des.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fran.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\np.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pc.png" />
+  </ItemGroup>
 </Project>
