@@ -76,7 +76,7 @@
             HorizontalOptions="Center"
             Margin="-100,0,0,0"/>
 
-                <Button Text="100+" Command="{Binding BtnCmdLine}" CommandParameter="out-50" FontSize="Medium" Grid.Row="7" Grid.Column="1"
+                <Button Text="100+" Command="{Binding BtnCmdLine}" CommandParameter="out-100" FontSize="Medium" Grid.Row="7" Grid.Column="1"
             TextColor="Black"
             BackgroundColor="#ffcccb"
             BorderColor="Red"
