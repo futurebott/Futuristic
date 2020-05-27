@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Futuristic.Services;
 using Futuristic.Views;
+using System.Threading.Tasks;
 
 namespace Futuristic
 {
@@ -14,11 +15,16 @@ namespace Futuristic
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+           // MainPage = new MainPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            MainPage = new NavigationPage(new SplashPage());
+
+            await Task.Delay(5000);
+
+            MainPage = new MainPage();
         }
 
         protected override void OnSleep()
