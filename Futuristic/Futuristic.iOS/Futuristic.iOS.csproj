@@ -171,4 +171,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\app.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sface.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\newapp.png" />
+  </ItemGroup>
 </Project>

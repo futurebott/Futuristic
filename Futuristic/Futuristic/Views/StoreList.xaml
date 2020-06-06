@@ -10,8 +10,7 @@
 
             <CollectionView x:Name="collectionView"
                         ItemsSource="{Binding stores}"
-                        SelectionMode="Single"
-                        BackgroundColor="#429de3">
+                        SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -22,27 +21,35 @@
                             <Image Source="{Binding ImageUrl}"
                                WidthRequest="90" HeightRequest="90"
                                Grid.Column="0" />
-                            <StackLayout Orientation="Vertical" Grid.Column="1">
 
+                            <StackLayout Orientation="Vertical" Grid.Column="1">
+                                
                                 <Grid>
+                                    <Image Source="add.png"  WidthRequest="20" HeightRequest="20" Margin="0,+5,0,0" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding Address}" d:Text="Item description"  Margin="+50,+5,0,0" />
+                                </Grid>
+                                
+                                <Grid>
+                 
                                     <Image Source="dis.png"  WidthRequest="5" HeightRequest="5" 
-                                Grid.Row="1"  Grid.Column="0" />
+                                    Grid.Row="1"  Grid.Column="0"  Margin="-100,-10,0,0" />
                                     <Label Text="{Binding DistanceString, StringFormat='{0}'}" 
-                                d:Text="{Binding .}"
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16"
-                                Grid.Row="1"  Grid.Column="1" />
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16"
+                                    Grid.Row="1"  Grid.Column="0"  Margin="+50,-10,0,0"/>
 
 
                                     <Image Source="np.png"  WidthRequest="5" HeightRequest="5" 
-                                Grid.Row="2"  Grid.Column="0" />
+                                    Grid.Row="1"  Grid.Column="1" Margin="-100,-10,0,0" />
                                     <Label Text="{Binding OutSideLine, StringFormat='{0}' }"
-                                d:Text="{Binding .}"
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}"
-                                Grid.Row="2"  Grid.Column="1"
-                                FontSize="16" />
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}"
+                                    FontSize="16"
+                                    Grid.Row="1"  Grid.Column="1"  Margin="+50,-10,0,0"/>
+                                    
                                 </Grid>
 
                             </StackLayout>

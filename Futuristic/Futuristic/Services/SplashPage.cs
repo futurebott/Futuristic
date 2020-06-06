@@ -8,6 +8,8 @@ namespace Futuristic.Services
     public class SplashPage : ContentPage
     {
         Image splashImage;
+       
+
 
         public SplashPage()
         {
@@ -16,17 +18,22 @@ namespace Futuristic.Services
             var sub = new AbsoluteLayout();
             splashImage = new Image
             {
-                Source = "app.png",
-                WidthRequest = 100,
-                HeightRequest = 100
-
+                Source = "newapp.png",
+                WidthRequest = 400,
+                HeightRequest = 800
+                    
             };
+
+        
             AbsoluteLayout.SetLayoutFlags(splashImage,
                 AbsoluteLayoutFlags.PositionProportional);
             AbsoluteLayout.SetLayoutBounds(splashImage,
             new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
             sub.Children.Add(splashImage);
+
+          
+
 
             this.BackgroundColor = Color.FromHex("#429de3");
             this.Content = sub;
