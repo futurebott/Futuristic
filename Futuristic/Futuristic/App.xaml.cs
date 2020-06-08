@@ -25,6 +25,7 @@ namespace Futuristic
             await Task.Delay(5000);
 
             MainPage = new MainPage();
+            
         }
 
         protected override void OnSleep()

@@ -24,33 +24,28 @@ namespace Futuristic.ViewModels
         }
         async Task ExecuteButtonClick(string value)
         {
+            IsBusy = true;
            var btnValueArr = value.Split('-');
             if (btnValueArr.Length > 1)
             {
+                var user  = UserService.Instance;
                 string lineType = btnValueArr[0];
                 int lineCount = int.Parse(btnValueArr[1]);
-                var user = new User();
                 var userLocation = user.CurrentLocation().Result;
                 var lineObj = new LineUp()
                 {
-                    ApplicationId = user.ApplicationId,
+                   // ApplicationId = user.(),
                     LineCount = lineCount,
                     LineType = lineType,
                     StoreId = SingleStore.Id,
                     Time = DateTime.UtcNow,
                     LocationLatitude = userLocation.Latitude,
                     LocationLongtitude = userLocation.Longitude,
-                    
                 };
                
                await _lineUpService.AddUpdateEntity(lineObj); ;
-                
+               IsBusy = false;
             }
-        }
-
-        private void SaveValue(string valueType, int number)
-        {
-          
         }
     }
 }

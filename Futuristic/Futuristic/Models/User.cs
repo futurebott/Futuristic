@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace Futuristic.Models
 {
@@ -17,39 +18,12 @@ namespace Futuristic.Models
         public int LocationRefreshIntervalinMinutes { get; set; }
         public User()
         {
-            ApplicationId = new Guid("44d0c89a-6c3c-4f20-ac05-e0b1af1cce4a");
+            ApplicationId = new Guid("00000000-0000-0000-0000-000000000000"); //new Guid("44d0c89a-6c3c-4f20-ac05-e0b1af1cce4a");
             CurrentLat = 0;
             CurrentLong = 0;
             TimeStamp = DateTime.Now;
         }
-        public async Task<Xamarin.Essentials.Location> CurrentLocation()
-        {
-            var currentLocation = new Xamarin.Essentials.Location();
-            try
-            {
-                var locationManager = new LocationMonanager();
-                currentLocation = await locationManager.GetLocationCache();
-                return currentLocation;
-            }
-            catch
-            {
-                throw;
-            }
-
-        }
-        public Guid CurrentUserId()
-        {
-            //TODo Save and get the userId from or may be email account
-            return new Guid("c10f5df4-5906-43f6-b3ed-53e0ba868712");
-        }
        
-        // other information available in from the store
-
-
-        //#if DEBUG
-        //                var currentLocation = new Location(43.842330, -79.074900);
-        //#else
-        //                 var currentLocation = await locationManager.GetLocationCache();
-        //#endif
+       
     }
 }

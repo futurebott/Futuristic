@@ -31,9 +31,8 @@ namespace Futuristic.ViewModels
 
             try
             {
-                var user = new User();
                 _storeService = new StoreService();
-                var userLocation = await user.CurrentLocation();
+                var userLocation = await UserService.Instance.CurrentLocation();
                 var parameters = "latitude=" + userLocation.Latitude + "&longtitude=" + userLocation.Longitude + "&live=true";
                 var asnycList = await _storeService.GetList(parameters);
                 foreach (var item in asnycList.OrderBy(a=> a.Distance))
