@@ -21,7 +21,7 @@ namespace Futuristic
         protected override async void OnStart()
         {
             MainPage = new NavigationPage(new SplashPage());
-
+            string appId = UserService.Instance.GetApplicationId().ToString();
             await Task.Delay(5000);
 
             MainPage = new MainPage();

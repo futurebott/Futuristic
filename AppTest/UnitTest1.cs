@@ -9,7 +9,7 @@ namespace AppTest
         [TestMethod]
         public void TestApplicationId()
         {
-           var applicationId  =  UserService.Instance.GetApplicationId();
+           //var applicationId  =  UserService.Instance.GetApplicationId();
             //UserService.GetApplicationId()
             Assert.IsTrue(1 == 1);
         }

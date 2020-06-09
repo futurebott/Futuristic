@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Futuristic.Services
 {
@@ -14,8 +15,9 @@ namespace Futuristic.Services
         HttpClient _client;
         string _ListMethod = "List";
         string _AddUpdateMethod = "AddOrUpdate";
+        string _GetByValue = "ByValue";
 
-         string APIBaseUrl;
+        string APIBaseUrl;
         public BaseService(string apiName)
         {
 #if DEBUG
@@ -36,6 +38,7 @@ namespace Futuristic.Services
             }
             _ListMethod = className + "/" + className + _ListMethod;
             _AddUpdateMethod = className + "/" + className + _AddUpdateMethod;
+            _GetByValue = className + "/" + className + _GetByValue;
         }
         public BaseService()
         {
@@ -47,7 +50,7 @@ namespace Futuristic.Services
             List<T> list = new List<T>();
             try
             {
-                var uri = APIBaseUrl + _ListMethod;
+                var uri = APIBaseUrl + _GetByValue;
                 if (!string.IsNullOrWhiteSpace(filter))
                 {
                     uri += "?" + filter;
@@ -66,7 +69,32 @@ namespace Futuristic.Services
                 return list;
             }
         }
-        public async Task AddUpdateEntity(T entity)
+        public async Task<T> GetbyValue(string filter = "")
+        {
+
+            List<T> list = new List<T>();
+            try
+            {
+                var uri = APIBaseUrl + _ListMethod;
+                if (!string.IsNullOrWhiteSpace(filter))
+                {
+                    uri += "?" + filter;
+                }
+
+                var response = await _client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    list = JsonConvert.DeserializeObject<List<T>>(content);
+                }
+                return list.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                return list.FirstOrDefault();
+            }
+        }
+        public async Task<T> AddUpdateEntity(T entity)
         {
             var Url = new Uri(string.Format(APIBaseUrl + _AddUpdateMethod));
             var json = JsonConvert.SerializeObject(entity);
@@ -78,9 +106,12 @@ namespace Futuristic.Services
                     .SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
                     .ConfigureAwait(false))
                 {
+                    var content = await response.Content.ReadAsStringAsync();
+                    entity = JsonConvert.DeserializeObject<T>(content);
                     response.EnsureSuccessStatusCode();
                 }
             }
+            return entity;
           
         }
         private static HttpContent CreateHttpContent(object content)
