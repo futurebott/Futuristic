@@ -21,7 +21,14 @@ namespace Futuristic
         protected override async void OnStart()
         {
             MainPage = new NavigationPage(new SplashPage());
-            string appId = UserService.Instance.GetApplicationId().ToString();
+            try
+            {
+                string appId = UserService.Instance.GetApplicationId().ToString();
+            }
+            catch(Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("Not Online", "You are not online. try when you are...", "Cancel", "ok");
+            }
             await Task.Delay(5000);
 
             MainPage = new MainPage();

@@ -50,7 +50,7 @@ namespace Futuristic.Services
             List<T> list = new List<T>();
             try
             {
-                var uri = APIBaseUrl + _GetByValue;
+                var uri = APIBaseUrl + _ListMethod;
                 if (!string.IsNullOrWhiteSpace(filter))
                 {
                     uri += "?" + filter;
@@ -75,7 +75,7 @@ namespace Futuristic.Services
             List<T> list = new List<T>();
             try
             {
-                var uri = APIBaseUrl + _ListMethod;
+                var uri = APIBaseUrl + _GetByValue;
                 if (!string.IsNullOrWhiteSpace(filter))
                 {
                     uri += "?" + filter;
@@ -96,20 +96,27 @@ namespace Futuristic.Services
         }
         public async Task<T> AddUpdateEntity(T entity)
         {
-            var Url = new Uri(string.Format(APIBaseUrl + _AddUpdateMethod));
-            var json = JsonConvert.SerializeObject(entity);
-            using (var request = new HttpRequestMessage(HttpMethod.Post, Url))
-            using (var httpContent = CreateHttpContent(entity))
+            try
             {
-                request.Content = httpContent;
-                using (var response = await _client
-                    .SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-                    .ConfigureAwait(false))
+                var Url = new Uri(string.Format(APIBaseUrl + _AddUpdateMethod));
+                var json = JsonConvert.SerializeObject(entity);
+                using (var request = new HttpRequestMessage(HttpMethod.Post, Url))
+                using (var httpContent = CreateHttpContent(entity))
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    entity = JsonConvert.DeserializeObject<T>(content);
-                    response.EnsureSuccessStatusCode();
+                    request.Content = httpContent;
+                    using (var response = await _client
+                        .SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+                        .ConfigureAwait(false))
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        entity = JsonConvert.DeserializeObject<T>(content);
+                        response.EnsureSuccessStatusCode();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                throw;
             }
             return entity;
           

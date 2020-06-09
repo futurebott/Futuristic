@@ -34,7 +34,7 @@ namespace Futuristic.ViewModels
                 var userLocation = user.CurrentLocation().Result;
                 var lineObj = new LineUp()
                 {
-                   // ApplicationId = user.(),
+                    ApplicationId = user.GetApplicationId(),
                     LineCount = lineCount,
                     LineType = lineType,
                     StoreId = SingleStore.Id,

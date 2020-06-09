@@ -21,7 +21,10 @@ namespace Futuristic.Models
             ApplicationId = new Guid("00000000-0000-0000-0000-000000000000"); //new Guid("44d0c89a-6c3c-4f20-ac05-e0b1af1cce4a");
             CurrentLat = 0;
             CurrentLong = 0;
-            TimeStamp = DateTime.Now;
+            TimeStamp = DateTime.UtcNow;
+            CreatedAt = DateTime.UtcNow;
+            ModifiedAt = DateTime.UtcNow;
+            
         }
        
        

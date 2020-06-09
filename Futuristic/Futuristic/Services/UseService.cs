@@ -17,7 +17,11 @@ namespace Futuristic.Services
         {
             Application = new Application();
             string infoStream = GetDeviceInfoStream();
+            Application.DeviceId = infoStream;
             Task.Run(async () => {
+                var curLoc = await this.CurrentLocation();
+                Application.CurrentLat = curLoc.Latitude;
+                Application.CurrentLong = curLoc.Longitude;
                 Application = await this.AddUpdateEntity(Application);
             });
           
