@@ -4,7 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="S FACE"
              x:Class="Futuristic.Views.StoreList">
+    
     <StackLayout>
         <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
 
@@ -13,46 +15,63 @@
                         SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+                        
+
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding ImageUrl}"
-                               WidthRequest="90" HeightRequest="90"
-                               Grid.Column="0" />
 
-                            <StackLayout Orientation="Vertical" Grid.Column="1">
-                                
-                                <Grid>
-                                    <Image Source="add.png"  WidthRequest="20" HeightRequest="20" Margin="0,+5,0,0" HorizontalOptions="Start"/>
-                                    <Label Text="{Binding Address}" d:Text="Item description"  Margin="+50,+5,0,0" />
-                                </Grid>
-                                
-                                <Grid>
-                 
-                                    <Image Source="dis.png"  WidthRequest="5" HeightRequest="5" 
-                                    Grid.Row="1"  Grid.Column="0"  Margin="-100,-10,0,0" />
-                                    <Label Text="{Binding DistanceString, StringFormat='{0}'}" 
-                                    d:Text="{Binding .}"
-                                    LineBreakMode="NoWrap" 
-                                    Style="{DynamicResource ListItemTextStyle}" 
-                                    FontSize="16"
-                                    Grid.Row="1"  Grid.Column="0"  Margin="+50,-10,0,0"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImageUrl}"
+                               WidthRequest="150" HeightRequest="150"
+                               Grid.RowSpan="1"
+                               Grid.ColumnSpan="2"
+                               
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               />
 
 
-                                    <Image Source="np.png"  WidthRequest="5" HeightRequest="5" 
-                                    Grid.Row="1"  Grid.Column="1" Margin="-100,-10,0,0" />
-                                    <Label Text="{Binding OutSideLine, StringFormat='{0}' }"
-                                    d:Text="{Binding .}"
-                                    LineBreakMode="NoWrap" 
-                                    Style="{DynamicResource ListItemTextStyle}"
-                                    FontSize="16"
-                                    Grid.Row="1"  Grid.Column="1"  Margin="+50,-10,0,0"/>
-                                    
-                                </Grid>
+                                <StackLayout Orientation="Vertical" Grid.Column="1"  VerticalOptions="Center"  Margin="+50,0,0,0">
 
-                            </StackLayout>
+                                    <Grid>
+                                        <Image Source="add.png"  WidthRequest="20" HeightRequest="20" HorizontalOptions="Start" Grid.Row="0"/>
+                                        <Label Text="{Binding Address}" d:Text="Item description"   Grid.Row="0"  Grid.RowSpan="2" Grid.ColumnSpan="3"  Margin="+25,0,0,0" />
+
+                                        <Image Source="dis.png"  WidthRequest="20" HeightRequest="20"  HorizontalOptions="Start" Grid.Row="2" Grid.Column="0" />
+                                        <Label Text="{Binding DistanceString, StringFormat='{0}'}" 
+                                        d:Text="{Binding .}"
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="16"
+                                        Grid.Row="2"  Grid.Column="0" Margin="+25,0,0,0" />
+
+                                        <Image Source="ol.png"  WidthRequest="20" HeightRequest="20"  HorizontalOptions="Start" Grid.Row="2" Grid.Column="1" />
+                                        <Label Text="{Binding OutSideLine, StringFormat='{0}' }"
+                                        d:Text="{Binding .}"
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="16"
+                                        Grid.Row="2"  Grid.Column="1" Margin="+25,0,0,0" />
+
+
+                                        <Image Source="co.png"  WidthRequest="20" HeightRequest="20"  HorizontalOptions="Start" Grid.Row="2" Grid.Column="2" />
+                                        <Label Text="{Binding CheckOutLine, StringFormat='{0}' }"
+                                        d:Text="{Binding .}"
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="16"
+                                        Grid.Row="2"  Grid.Column="2" Margin="+25,0,0,0" />
+
+                                    </Grid>
+
+                                </StackLayout>
+                            </Grid>
+                            <Image Source="line.png" WidthRequest="200" HeightRequest="100" Margin="0,0,0,0"
+                                    HorizontalOptions="Center"
+                               VerticalOptions="End"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
