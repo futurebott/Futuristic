@@ -32,6 +32,8 @@ namespace Futuristic.Services
                 //var curLoc = await this.CurrentLocation();
                 Application.CurrentLat = 1; // unable to get location here so will update on another call
                 Application.CurrentLong =1;
+                Application.LastRefreshTime = DateTime.Now.AddMinutes(100);
+                Application.RefreshIntervalInMinutes = 5;
                 Application = await _appService.AddUpdateEntity(Application);
             });
         }
@@ -39,19 +41,37 @@ namespace Futuristic.Services
         {
             return Application.ApplicationId;
         }
+        public bool Needs_A_Refresh()
+        {
+            if (Application.CurrentLat == 1 || Application.CurrentLong == 1)
+                return true;
+            if (DateTime.Now.Subtract(Application.LastRefreshTime).TotalMinutes > Application.RefreshIntervalInMinutes)
+                return true;
+            else
+                return false;
+        }
         public  async Task<Xamarin.Essentials.Location> CurrentLocation()
         {
-            var currentLocation = new Xamarin.Essentials.Location();
-            try
+            if (Needs_A_Refresh())
             {
-                var locationManager = new LocationMonanager();
-                currentLocation = await locationManager.GetLocationCache();
-                return currentLocation;
+                var currentLocation = new Xamarin.Essentials.Location();
+                try
+                {
+                    var locationManager = new LocationMonanager();
+                    currentLocation = await locationManager.GetLocationCache();
+                    Application.LastRefreshTime = DateTime.Now;
+                    return currentLocation;
+                }
+                catch
+                {
+                    throw;
+                }
             }
-            catch
+            else
             {
-                throw;
+                return new Location(Application.CurrentLat, Application.CurrentLat);
             }
+           
 
         }
         public string AppKey()

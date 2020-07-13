@@ -21,7 +21,7 @@ namespace Futuristic
         protected override async void OnStart()
         {
             MainPage = new NavigationPage(new SplashPage());
-            await Task.Delay(5000);
+            await Task.Delay(2000);
             MainPage = new MainPage();
             
         }
@@ -32,6 +32,7 @@ namespace Futuristic
 
         protected override void OnResume()
         {
+            MainPage = new MainPage();
         }
         protected void Init()
         {

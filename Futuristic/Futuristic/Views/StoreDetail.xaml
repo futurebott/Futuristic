@@ -20,9 +20,9 @@
 
                 <Image Source="ol.png"  WidthRequest="20" HeightRequest="20" Grid.Row="1"  Grid.Column="0" Margin="0,-25,+150,0" HorizontalOptions="Start" />
                 <Label Text="OutSide Line:" FontSize="Medium" Grid.Row="1" Grid.Column="0" Margin="+40,0,0,0"/>
-                <Label Text="{Binding SingleStore.OutSideLine}" d:Text="Item description" FontSize="Small" Grid.Row="1" Grid.Column="1"/>
+                <!--<Label Text="{Binding SingleStore.OutSideLine}" d:Text="Item description" FontSize="Small" Grid.Row="1" Grid.Column="1"/>-->
 
-                <Slider x:Name="slider"
+                <Slider x:Name="OutSideLineslider" Value="{Binding OutSideLine, Mode=TwoWay}"
                 Maximum="100" Grid.Row="2" Grid.ColumnSpan="2" 
                         MaximumTrackColor="Red" 
                         MinimumTrackColor="Yellow" 
@@ -30,17 +30,15 @@
                         ThumbColor="Green"/>
 
                 <Label x:Name="displayLabel"
-                     Text="{Binding Source={x:Reference slider}, 
-                     Path=Value, 
-                     StringFormat='{0:F0}'}"
+                     Text="{Binding OutSideLine}"
+                    
                      HorizontalOptions="Center"
                      VerticalOptions="CenterAndExpand" Grid.Row="3" />
 
                 <Image Source="co.png"  WidthRequest="20" HeightRequest="20" Grid.Row="4"  Grid.Column="0" Margin="0,-25,+150,0" HorizontalOptions="Start"/>
                 <Label Text="CheckOut Line :" FontSize="Medium" Grid.Row="4" Grid.Column="0" Margin="+40,0,0,0"/>
-                <Label Text="{Binding SingleStore.CheckOutLine}" d:Text="Item description" FontSize="Small" Grid.Row="4" Grid.Column="1"/>
-
-                <Slider x:Name="slider2"
+                <!--<Label Text="{Binding SingleStore.CheckOutLine}" d:Text="Item description" FontSize="Small" Grid.Row="4" Grid.Column="1"/>-->
+                <Slider x:Name="InsideLineSlider" Value="{Binding CheckOutLine, Mode=TwoWay}"
                 Maximum="100" Grid.Row="5"  Grid.ColumnSpan="2"
                          MaximumTrackColor="Red" 
                         MinimumTrackColor="Yellow" 
@@ -48,9 +46,8 @@
                         ThumbColor="Green"/>
 
                 <Label x:Name="displayLabel2"
-                     Text="{Binding Source={x:Reference slider2}, 
-                     Path=Value, 
-                     StringFormat='{0:F0}'}"
+                     Text="{Binding CheckOutLine}"
+                 
                      HorizontalOptions="Center"
                      VerticalOptions="CenterAndExpand" Grid.Row="6"  />
 

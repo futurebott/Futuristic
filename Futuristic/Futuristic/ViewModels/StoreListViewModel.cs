@@ -22,7 +22,15 @@ namespace Futuristic.ViewModels
         {
             stores = new ObservableCollection<Store>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            
+            Device.StartTimer(new TimeSpan(0, 5, 0), () =>
+            {
+                // do something every 60 seconds
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Task.Run(async () => await ExecuteLoadItemsCommand());
+                });
+                return true; // runs again, or false to stop
+            });
         }
 
         async Task ExecuteLoadItemsCommand()

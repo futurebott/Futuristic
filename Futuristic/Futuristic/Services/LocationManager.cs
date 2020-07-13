@@ -16,7 +16,7 @@ namespace Futuristic.Services
         }
         public async Task<Location> GetLocationCache()
         {
-            Location location = new Location();
+            Location location = null;
             try
             {
 #if DEBUG
@@ -24,7 +24,7 @@ namespace Futuristic.Services
 
 #else
 
-                location = await Geolocation.GetLastKnownLocationAsync();
+                //location = await Geolocation.GetLastKnownLocationAsync();
 #endif
 
                 if (location != null)

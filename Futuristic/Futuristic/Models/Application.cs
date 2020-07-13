@@ -12,6 +12,8 @@ namespace Futuristic.Models
         public Guid ApplicationId { get; set; }
         public double CurrentLat { get; set; }
         public double CurrentLong { get; set; }
+        public double RefreshIntervalInMinutes { get; set; }
+        public DateTime LastRefreshTime { get; set; }
         public DateTime TimeStamp { get; set; }
         public string DeviceId { get; set; }
         public DateTime ModifiedAt { get; set; }

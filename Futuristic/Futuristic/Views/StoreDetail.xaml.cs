@@ -20,9 +20,9 @@ namespace Futuristic.Views
             InitializeComponent();
             BindingContext = this.detailViewModel = viewModel;
         }
-        void OnButtonClicked(object sender, EventArgs e)
-        {
-            (sender as Button).Text = "OK";
-        }
+        //void OnButtonClicked(object sender, EventArgs e)
+        //{
+        //    (sender as Button).Text = "OK";
+        //}
     }
 }
