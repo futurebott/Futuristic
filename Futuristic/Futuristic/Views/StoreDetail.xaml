@@ -7,20 +7,78 @@
              x:Class="Futuristic.Views.StoreDetail">
 
     <ScrollView>
-        <StackLayout Spacing="20" Padding="15">
-            <Image Source="{Binding SingleStore.ImageUrl}"/>
-            <Grid>
-                <Image Source="add.png"  WidthRequest="20" HeightRequest="20" Margin="0,-5,+350,0" HorizontalOptions="Start" />
-                <Label Text="Address:" FontSize="Medium" Margin="+40,0,0,0" />
+        <StackLayout Spacing="20" Padding="15" BackgroundColor="White">
+            <Grid BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" BackgroundColor="Bisque" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>-->
+                <Image Source="{Binding SingleStore.ImageUrl}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+                <Image Source="add.png" Grid.Column="0" Grid.Row="1"/>
+                <Label Text="{Binding SingleStore.Address}" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="1"  VerticalOptions="CenterAndExpand"  />
+                
+                <Image Source="ol.png" Grid.Column="0" Grid.Row="2" />
+                <Label Text="OutSide Line:" Grid.Column="1" Grid.Row="2"  FontSize="Medium"  VerticalOptions="CenterAndExpand"/>
+
+                <Label   Text="{Binding Source={x:Reference OutSideLineslider},
+                              Path=Value,
+                              StringFormat='{0:F0}'}" FontSize="Large" Grid.Row="2" Grid.Column="2"
+               HorizontalOptions="Start"
+               VerticalOptions="Center" />
+                <Slider x:Name="OutSideLineslider" Value="{Binding OutSideLine, Mode=TwoWay}"
+                Maximum="100" Minimum="0" Grid.Row="3" Grid.Column="0"
+                        MaximumTrackColor="Red" 
+                        MinimumTrackColor="Green" 
+                        HeightRequest="50" 
+                        ThumbColor="Green" Grid.ColumnSpan="3"/>
+
+                <Image Source="co.png"  Grid.Column="0" Grid.Row="4"/>
+                <Label Text="CheckOut Line:"  Grid.Row="4"  Grid.Column="1" FontSize="Medium" VerticalOptions="CenterAndExpand"/>
+
+                <Label   Text="{Binding Source={x:Reference InsideLineSlider},
+                              Path=Value,
+                              StringFormat='{0:F0}'}" FontSize="Large" Grid.Row="4" Grid.Column="2"
+               HorizontalOptions="Start"
+               VerticalOptions="Center" />
+                <Slider x:Name="InsideLineSlider" Value="{Binding CheckOutLine, Mode=TwoWay}"
+                Maximum="100" Minimum="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"
+                        MaximumTrackColor="Red" 
+                        MinimumTrackColor="Blue" 
+                        HeightRequest="50" 
+                        ThumbColor="Black"/>
+
+                <Label Text="Distance:"  Grid.Row="6"  Grid.Column="0" Grid.ColumnSpan="2" />
+                <Label Text="{Binding SingleStore.DistanceString}" Grid.Row="6"  Grid.Column="2"/>
+
+                <Label Text="PostalCode:"   Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" />
+                <Label Text="{Binding SingleStore.PostalCode}" Grid.Row="7" Grid.Column="2"/>
+
+                <Label Text="{Binding SingleStore.Description}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"/>
+
             </Grid>
+            <!--<Image Source="{Binding SingleStore.ImageUrl}"/>
             <Grid>
+                <Image Source="add.png"  WidthRequest="20" HeightRequest="20" Margin="+5,-5,+350,+5" HorizontalOptions="Start" />
                 <Label Text="{Binding SingleStore.Address}" d:Text="Item description"   />
             </Grid>
+          
             <Grid>
 
                 <Image Source="ol.png"  WidthRequest="20" HeightRequest="20" Grid.Row="1"  Grid.Column="0" Margin="0,-25,+150,0" HorizontalOptions="Start" />
                 <Label Text="OutSide Line:" FontSize="Medium" Grid.Row="1" Grid.Column="0" Margin="+40,0,0,0"/>
-                <!--<Label Text="{Binding SingleStore.OutSideLine}" d:Text="Item description" FontSize="Small" Grid.Row="1" Grid.Column="1"/>-->
+                --><!--<Label Text="{Binding SingleStore.OutSideLine}" d:Text="Item description" FontSize="Small" Grid.Row="1" Grid.Column="1"/>--><!--
 
                 <Slider x:Name="OutSideLineslider" Value="{Binding OutSideLine, Mode=TwoWay}"
                 Maximum="100" Grid.Row="2" Grid.ColumnSpan="2" 
@@ -37,7 +95,7 @@
 
                 <Image Source="co.png"  WidthRequest="20" HeightRequest="20" Grid.Row="4"  Grid.Column="0" Margin="0,-25,+150,0" HorizontalOptions="Start"/>
                 <Label Text="CheckOut Line :" FontSize="Medium" Grid.Row="4" Grid.Column="0" Margin="+40,0,0,0"/>
-                <!--<Label Text="{Binding SingleStore.CheckOutLine}" d:Text="Item description" FontSize="Small" Grid.Row="4" Grid.Column="1"/>-->
+                --><!--<Label Text="{Binding SingleStore.CheckOutLine}" d:Text="Item description" FontSize="Small" Grid.Row="4" Grid.Column="1"/>--><!--
                 <Slider x:Name="InsideLineSlider" Value="{Binding CheckOutLine, Mode=TwoWay}"
                 Maximum="100" Grid.Row="5"  Grid.ColumnSpan="2"
                          MaximumTrackColor="Red" 
@@ -60,7 +118,7 @@
                 <Label Text="PostalCode:" FontSize="Medium"  Grid.Row="9" Grid.Column="0" Margin="0,0,0,0"/>
                 <Label Text="{Binding SingleStore.PostalCode}" d:Text="Item description" FontSize="Small" Grid.Row="9" Grid.Column="1"/>
 
-            </Grid>
+            </Grid>-->
 
         </StackLayout>
     </ScrollView>
