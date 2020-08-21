@@ -28,11 +28,12 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" BackgroundColor="Bisque" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
                             <Image Source="{Binding ImageUrl}"
-                               WidthRequest="150" HeightRequest="150" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"/>
+                               WidthRequest="150" HeightRequest="150" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"/>
                             <Image Source="add.png"  Grid.Row="0" Grid.Column="1" />
                             <Label Text="{Binding Address}"  Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5"  VerticalOptions="Center"/>
                             <Image Source="dis.png"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1"  VerticalOptions="Center" />
@@ -41,6 +42,8 @@
                             <Label Text="{Binding OutSideLine, StringFormat='{0}' }"  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="1"  VerticalOptions="Center"/>
                             <Image Source="co.png" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="1"  VerticalOptions="Center"/>
                             <Label Text="{Binding CheckOutLine, StringFormat='{0}' }" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1"  VerticalOptions="Center"/>
+                            <Label Text="{Binding TimeLabel}" Grid.Row="2" FontSize="Medium" FontAttributes="Bold" TextColor="{Binding TimeLabelColor}" Grid.Column="1"  Grid.ColumnSpan="2"  VerticalOptions="Center"/>
+                            <Label Text="{Binding OpenCloseTime}" Grid.Row="2" FontSize="Small" Grid.Column="3"  Grid.ColumnSpan="4"  VerticalOptions="Center"/>
                         </Grid>
                         
                     </DataTemplate>

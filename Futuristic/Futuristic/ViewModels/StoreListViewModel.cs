@@ -39,17 +39,30 @@ namespace Futuristic.ViewModels
 
             try
             {
+                if (stores.Any())
+                    stores.Clear();
                 _storeService = new StoreService();
                 var userLocation = await UserService.Instance.CurrentLocation();
                 var parameters = "latitude=" + userLocation.Latitude + "&longtitude=" + userLocation.Longitude + "&live=true";
                 var asnycList = await _storeService.GetList(parameters);
-                foreach (var item in asnycList.OrderBy(a=> a.Distance))
+                foreach (var item in asnycList.OrderBy(a => a.Distance))
                 {
                     if (item.Distance > 0)
                         item.DistanceString = LocationMonanager.MetersToString(item.Distance);
+                    item.OpenCloseTime = Utilities.OpenCloseTime(item.OpenTime, item.CloseTime, Utilities.GetNowDateTime().Hour, out string timeLabel);
+                    item.TimeLabel = timeLabel;
+                    if (timeLabel == "Close")
+                        item.TimeLabelColor = "Red";
+                    else
+                        item.TimeLabelColor = "Green";
+                    if (item.OpenCloseTime == "Closed")
+                    {
+                        item.CheckOutLine = 0;
+                        item.OutSideLine = 0;
+                    }
                     stores.Add(item);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -60,7 +73,8 @@ namespace Futuristic.ViewModels
                 IsBusy = false;
             }
         }
-      
+
+
 
     }
 }

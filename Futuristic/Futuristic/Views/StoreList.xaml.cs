@@ -40,7 +40,7 @@ namespace Futuristic.Views
                 await Navigation.PushAsync(new StoreDetail(new StoreDetailViewModel(item)));
 
                 // Manually deselect item.
-                //collectionView.SelectedItem = null;
+                collectionView.SelectedItem = null;
             }
             catch (Exception ex)
             {

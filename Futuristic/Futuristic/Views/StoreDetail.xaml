@@ -23,9 +23,10 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" BackgroundColor="Bisque" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>-->
-                <Image Source="{Binding SingleStore.ImageUrl}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+                <Image Source="{Binding SingleStore.ImageUrl}" Grid.Row="0" Grid.Column="0" WidthRequest="400" Grid.ColumnSpan="3" />
                 <Image Source="add.png" Grid.Column="0" Grid.Row="1"/>
                 <Label Text="{Binding SingleStore.Address}" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="1"  VerticalOptions="CenterAndExpand"  />
                 

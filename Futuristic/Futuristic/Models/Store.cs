@@ -19,6 +19,11 @@ namespace Futuristic.Models
         public double Longtitude { get; set; }
         public double Distance { get; set; }
         public string DistanceString { get; set; }
+        public string OpenCloseTime { get; set; }
+        public string TimeLabel { get; set; }
+        public string TimeLabelColor { get; set; }
+        public int OpenTime { get; set; }
+        public int CloseTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
     }

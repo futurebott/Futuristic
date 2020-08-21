@@ -14,7 +14,7 @@ namespace Futuristic
         {
             InitializeComponent();
             Init();
-            DependencyService.Register<MockDataStore>();
+          //  DependencyService.Register<MockDataStore>();
            // MainPage = new MainPage();
         }
 
@@ -42,7 +42,8 @@ namespace Futuristic
             }
             catch (Exception ex)
             {
-                Task.Run(async() => { 
+                Task.Run(async () =>
+                {
                     await Application.Current.MainPage.DisplayAlert("Not Online", "You are not online. try when you are...", "Cancel", "ok");
                 });
             }
