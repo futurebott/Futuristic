@@ -24,6 +24,8 @@ namespace Futuristic.Models
         public string TimeLabelColor { get; set; }
         public int OpenTime { get; set; }
         public int CloseTime { get; set; }
+        public string commaStoreTimings { get; set; }
+        public string WeeklyTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
     }

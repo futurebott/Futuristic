@@ -21,14 +21,15 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" BackgroundColor="Bisque" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>-->
                 <Image Source="{Binding SingleStore.ImageUrl}" Grid.Row="0" Grid.Column="0" WidthRequest="400" Grid.ColumnSpan="3" />
-                <Image Source="add.png" Grid.Column="0" Grid.Row="1"/>
-                <Label Text="{Binding SingleStore.Address}" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="1"  VerticalOptions="CenterAndExpand"  />
+                <ImageButton Source="add.png" Grid.Column="0" Grid.Row="1"  Command="{Binding BtnCmdDirection}"/>
+                <Button Text="{Binding SingleStore.Address}" TextColor="Blue"  Command="{Binding BtnCmdDirection}" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="1"  VerticalOptions="CenterAndExpand"  />
                 
                 <Image Source="ol.png" Grid.Column="0" Grid.Row="2" />
                 <Label Text="OutSide Line:" Grid.Column="1" Grid.Row="2"  FontSize="Medium"  VerticalOptions="CenterAndExpand"/>
@@ -63,10 +64,11 @@
                 <Label Text="Distance:"  Grid.Row="6"  Grid.Column="0" Grid.ColumnSpan="2" />
                 <Label Text="{Binding SingleStore.DistanceString}" Grid.Row="6"  Grid.Column="2"/>
 
-                <Label Text="PostalCode:"   Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" />
-                <Label Text="{Binding SingleStore.PostalCode}" Grid.Row="7" Grid.Column="2"/>
-
-                <Label Text="{Binding SingleStore.Description}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"/>
+                <Label Text="Times:"   Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" />
+                <Label Text="{Binding WeeklyTime}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <!--<Label Text="{Binding SingleStore.PostalCode}" Grid.Row="7" Grid.Column="2"/>-->
+                <Label Text="{Binding SingleStore.Description}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3"/>
+              
 
             </Grid>
             <!--<Image Source="{Binding SingleStore.ImageUrl}"/>

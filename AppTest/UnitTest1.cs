@@ -23,5 +23,10 @@ namespace AppTest
             var closedOpenOPensTomorrow = Utilities.OpenCloseTime(7, 23, 23, out string timeLabel3);
             var closedOpensAt = Utilities.OpenCloseTime(7, 23, 4, out string timeLabel2);
         }
+        [TestMethod]
+        public void WeekTImeTest()
+        {
+            var atring = Utilities.WeekTimes("8:00-20:00");
+        }
     }
 }
