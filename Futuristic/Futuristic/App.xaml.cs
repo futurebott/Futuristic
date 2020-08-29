@@ -38,7 +38,7 @@ namespace Futuristic
         {
             try
             {
-               UserService.Instance.Init();
+               UserService.Init();
             }
             catch (Exception ex)
             {

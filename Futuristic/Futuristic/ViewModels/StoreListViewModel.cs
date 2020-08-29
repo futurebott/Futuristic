@@ -22,9 +22,10 @@ namespace Futuristic.ViewModels
         {
             stores = new ObservableCollection<Store>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            //Refresh every 5 mins
             Device.StartTimer(new TimeSpan(0, 5, 0), () =>
             {
-                // do something every 60 seconds
+                
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Task.Run(async () => await ExecuteLoadItemsCommand());
@@ -42,7 +43,7 @@ namespace Futuristic.ViewModels
                 if (stores.Any())
                     stores.Clear();
                 _storeService = new StoreService();
-                var userLocation = await UserService.Instance.CurrentLocation();
+                var userLocation = await UserService.CurrentLocation();
                 var parameters = "latitude=" + userLocation.Latitude + "&longtitude=" + userLocation.Longitude + "&live=true";
                 var asnycList = await _storeService.GetList(parameters);
                 foreach (var item in asnycList.OrderBy(a => a.Distance))
@@ -52,14 +53,14 @@ namespace Futuristic.ViewModels
                     item.OpenCloseTime = Utilities.OpenCloseTime(item.OpenTime, item.CloseTime, Utilities.GetNowDateTime().Hour, out string timeLabel);
                     item.TimeLabel = timeLabel;
                     if (timeLabel == "Close")
-                        item.TimeLabelColor = "Red";
-                    else
-                        item.TimeLabelColor = "Green";
-                    if (item.OpenCloseTime == "Closed")
                     {
+                        item.TimeLabelColor = "Red";
                         item.CheckOutLine = 0;
                         item.OutSideLine = 0;
                     }
+                    else
+                        item.TimeLabelColor = "Green";
+                  
                     stores.Add(item);
                 }
 

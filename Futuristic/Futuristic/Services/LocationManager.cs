@@ -17,44 +17,31 @@ namespace Futuristic.Services
         public async Task<Location> GetLocationCache()
         {
             Location location = null;
+
+
+//#if !DEBUG
+//               return new Location(43.606981, -79.692546);
+
+//#else
             try
             {
-#if DEBUG
-                location = new Location(43.842330, -79.074900);
-
-#else
-
-                //location = await Geolocation.GetLastKnownLocationAsync();
-#endif
-
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                location = await Geolocation.GetLocationAsync(request);
                 if (location != null)
                 {
                     return location;
                 }
                 else
-                {
-                    try
-                    {
-                        var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                        location = await Geolocation.GetLocationAsync(request);
-                        if (location != null)
-                        {
-                            return location;
-                        }
-                    }
-                    catch
-                    {
-                        throw;
-                    }
-                }
+                    location = await Geolocation.GetLastKnownLocationAsync();
             }
-
             catch
             {
                 throw;
             }
+//#endif
             // if this is being thrown we are screwed
             return location;
+
         }
 
         public async Task<Location> GetLocationByAddress(string address)

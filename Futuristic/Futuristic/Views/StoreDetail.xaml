@@ -61,10 +61,10 @@
                         HeightRequest="50" 
                         ThumbColor="Black"/>
 
-                <Label Text="Distance:"  Grid.Row="6"  Grid.Column="0" Grid.ColumnSpan="2" />
+                <Label Text="Distance:"  Grid.Row="6"  Grid.Column="1"/>
                 <Label Text="{Binding SingleStore.DistanceString}" Grid.Row="6"  Grid.Column="2"/>
 
-                <Label Text="Times:"   Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" />
+                <Label Text="Weekly Times:"   Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="1" />
                 <Label Text="{Binding WeeklyTime}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"/>
                 <!--<Label Text="{Binding SingleStore.PostalCode}" Grid.Row="7" Grid.Column="2"/>-->
                 <Label Text="{Binding SingleStore.Description}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3"/>

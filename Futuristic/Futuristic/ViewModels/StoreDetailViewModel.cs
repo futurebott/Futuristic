@@ -117,13 +117,13 @@ namespace Futuristic.ViewModels
            var btnValueArr = value.Split('-');
             if (btnValueArr.Length > 1)
             {
-                var user  = UserService.Instance;
+                //var user  = UserService.Instance;
                 string lineType = btnValueArr[0];
                 int lineCount = int.Parse(btnValueArr[1]);
-                var userLocation = user.CurrentLocation().Result;
+                var userLocation = UserService.CurrentLocation().Result;
                 var lineObj = new LineUp()
                 {
-                    ApplicationId = user.GetApplicationId(),
+                    ApplicationId = UserService.GetApplicationId(),
                     LineCount = lineCount,
                     LineType = lineType,
                     StoreId = SingleStore.Id,

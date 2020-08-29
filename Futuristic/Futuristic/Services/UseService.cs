@@ -10,56 +10,59 @@ using System.Linq;
 
 namespace Futuristic.Services
 {
-    public sealed class UserService 
+    public class UserService 
     {
        
-        private static readonly Lazy<UserService> lazy = new Lazy<UserService>(() => new UserService());
+        //private static readonly Lazy<UserService> lazy = new Lazy<UserService>(() => new UserService());
         public static Application Application;
-        private ApplicationService _appService;
-        public static UserService Instance { get { return lazy.Value; } }
-        private UserService() 
+        //private ApplicationService _appService;
+        //public static UserService Instance { get { return lazy.Value; } }
+        //private UserService() 
+        //{
+        //    Init();
+        //}
+       public static void Init()
         {
-            Init();
-        }
-       public void Init()
-        {
-            _appService = new ApplicationService();
+            var _appService = new ApplicationService();
             Application = new Application();
-            string infoStream = GetDeviceInfo();
+            string infoStream = Utilities.GetDeviceInfo();
             Application.DeviceId = infoStream;
+            Utilities.SetLastRefreshTime(DateTime.Now.AddMinutes(-100)); // this will set the initial
             Task.Run(async () =>
             {
-                //var curLoc = await this.CurrentLocation();
                 Application.CurrentLat = 1; // unable to get location here so will update on another call
-                Application.CurrentLong =1;
-                Application.LastRefreshTime = DateTime.Now.AddMinutes(100);
-                Application.RefreshIntervalInMinutes = 5;
+                Application.CurrentLong = 1;
                 Application = await _appService.AddUpdateEntity(Application);
             });
         }
-        public  Guid GetApplicationId()
+        public static Guid GetApplicationId()
         {
             return Application.ApplicationId;
         }
-        public bool Needs_A_Refresh()
+        
+        public static async Task<Location> CurrentLocation()
         {
-            if (Application.CurrentLat == 1 || Application.CurrentLong == 1)
-                return true;
-            if (DateTime.Now.Subtract(Application.LastRefreshTime).TotalMinutes > Application.RefreshIntervalInMinutes)
-                return true;
-            else
-                return false;
-        }
-        public  async Task<Xamarin.Essentials.Location> CurrentLocation()
-        {
-            if (Needs_A_Refresh())
+            if (Utilities.Does_App_Needs_A_Refresh())
             {
-                var currentLocation = new Xamarin.Essentials.Location();
+                var currentLocation = new Location();
                 try
                 {
                     var locationManager = new LocationMonanager();
                     currentLocation = await locationManager.GetLocationCache();
-                    Application.LastRefreshTime = DateTime.Now;
+                    Utilities.SetLastRefreshTime(DateTime.Now);
+                    Utilities.SetLocation(currentLocation);
+                    //update last access point for application
+                    if (Utilities.GetAppKey("ApplocationAdded") != "Yes")
+                    {
+                        var _appService = new ApplicationService();
+                        Application = new Application();
+                        string infoStream = Utilities.GetDeviceInfo();
+                        Application.DeviceId = infoStream;
+                        Application.CurrentLat = currentLocation.Latitude;
+                        Application.CurrentLong = currentLocation.Longitude;
+                        _appService.AddUpdateEntity(Application).ConfigureAwait(false);
+                        Utilities.SetAppKey("ApplocationAdded", "Yes");
+                    }
                     return currentLocation;
                 }
                 catch
@@ -69,46 +72,17 @@ namespace Futuristic.Services
             }
             else
             {
-                return new Location(Application.CurrentLat, Application.CurrentLat);
+                return Utilities.GetLocation();
             }
            
 
         }
-        public string AppKey()
-        {
-            try {
-                string appkEy = string.Empty;
-                Task.Run(async () => { appkEy = await SecureStorage.GetAsync("appKey"); });
-                if(string.IsNullOrEmpty(appkEy))
-                {
-                    appkEy = Guid.NewGuid().ToString();
-                    Task.Run(async () => { await SecureStorage.SetAsync("appKey", appkEy); });
-                }
-                return appkEy;
-            }
-            catch(Exception ex)
-            {
-                throw;
-            }
-           
-        }
-        public string GetDeviceInfo()
-        {
-            // Device Model (SMG-950U, iPhone10,6)
-            StringBuilder deviceInforStream = new StringBuilder();
-            deviceInforStream.Append("Model:" + DeviceInfo.Model);
-            deviceInforStream.Append(",Manufacturer:" + DeviceInfo.Manufacturer);
-            deviceInforStream.Append(",DeviceName:" + DeviceInfo.Name);
-            deviceInforStream.Append(",VersionString:" + DeviceInfo.VersionString);
-            deviceInforStream.Append(",Platform:" + DeviceInfo.Platform);
-            deviceInforStream.Append(",Idiom:" + DeviceInfo.Idiom.ToString());
-            deviceInforStream.Append(",DeviceType:" + DeviceInfo.DeviceType.ToString());
-            return deviceInforStream.ToString();
-        }
+    
+      
         public  string LoadApplicationId()
         {
             string applicationIdString = string.Empty;
-            var appFile = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "Application.txt");
+            var appFile = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "Application.info");
             if (appFile == null || !File.Exists(appFile))
             {
                 var newGuid = Guid.NewGuid();
