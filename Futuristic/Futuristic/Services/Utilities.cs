@@ -188,7 +188,7 @@ namespace Futuristic.Services
             }
             return retTime;
         }
-        public static string OpenCloseTime(in int openTime, in int closeTime, in int currentHous, out string timeLabel)
+        public static string OpenCloseTime(int openTime, int closeTime, int currentHous, out string timeLabel)
         {
             var hour = currentHous;
             var time = "";
